@@ -1,5 +1,8 @@
 import java.sql.*;
 
+/*
+ * @author: meiyaz
+ */
 public class ConnectDatabase {
     public static void main(String[] args) throws ClassNotFoundException {
         final String CONNECTION_STRING = "jdbc:mysql://localhost:3306/training";
@@ -11,6 +14,8 @@ public class ConnectDatabase {
         final String DELETE_QUERY_STATIC = "DELETE FROM javaclass where age = 20;";
         final String UPDATE_QUERY_DYNAMIC = "UPDATE `training`.`javaclass` SET `age` = '20' WHERE (`id` = ?);";
         final String INSERT_PYTHONCLASS_DYNAMIC = "INSERT INTO `training`.`pythonclass` (`name`, `age`) VALUES (?, ?);";
+        final String SELECT_PYTHONCLASS_DYNAMIC = "SELECT * FROM `training`.`pythonclass` where age > ?;";
+        final String SP_JAVACLASS_DYNAMIC = "call training.get_javaclass_by_id(?);";
 
         // step-1: register driver
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -70,11 +75,57 @@ public class ConnectDatabase {
             prepStmtInsertPythonClass.setInt(2, 22);
             boolean holdsResultSet = prepStmtInsertPythonClass.execute(getQueryFromPreparedStatement(prepStmtInsertPythonClass));
             if (holdsResultSet) {
-                System.out.println("Success");
+                System.out.println("Success, holds result set");
+            } else {
+                System.out.println("Success, no result set");
+                int affectedRows = prepStmtInsertPythonClass.getUpdateCount();
+                if(affectedRows > 0) {
+                    System.out.println("Success");
+                } else {
+                    System.out.println("Failure");
+                }
             }
 
-            // step-7: close the connection if not created like try(Connection conn = ...)
-            conn.close();
+            PreparedStatement prepStmtSelectPythonClass = conn.prepareStatement(SELECT_PYTHONCLASS_DYNAMIC);
+            prepStmtSelectPythonClass.setInt(1, 30);
+            boolean hasResultSet = prepStmtSelectPythonClass.execute(getQueryFromPreparedStatement(prepStmtSelectPythonClass));
+            if (hasResultSet) {
+                System.out.println("Success, holds result set");
+                ResultSet pythonClassData = prepStmtSelectPythonClass.getResultSet();
+                while (pythonClassData.next()) {
+                    System.out.print(pythonClassData.getInt(1));
+                    System.out.print(pythonClassData.getString("name"));
+                    System.out.print(pythonClassData.getInt(3));
+                    System.out.println();
+                }
+                pythonClassData.close();
+            } else {
+                System.out.println("Success, no result set");
+                System.out.println(prepStmtSelectPythonClass.getUpdateCount());
+            }
+
+            CallableStatement callableStmt = conn.prepareCall(SP_JAVACLASS_DYNAMIC);
+            callableStmt.setInt(1, 1);
+            ResultSet rs = callableStmt.executeQuery();
+            System.out.println("SP result");
+            while(rs.next()) {
+                System.out.print(rs.getInt(1));
+                System.out.print(rs.getString(2));
+                System.out.print(rs.getInt("age"));
+                System.out.println();
+            }
+
+            // step-7: close the ResultSet, Statements and Connection if not created like try(Connection conn = ...)
+            resultSet.close();
+            stmt.close();
+            prepStmtInsert.close();
+            prepStmtUpdate.close();
+            prepStmtDelete.close();
+            prepStmtInsertPythonClass.close();
+            prepStmtSelectPythonClass.close();
+            rs.close();
+            callableStmt.close();
+            conn.close(); // optional here, as we created like try(Conn...)
         } catch (SQLException e) {
             System.out.println("EX::" + e);
         }
