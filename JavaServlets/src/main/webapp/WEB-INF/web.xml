@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
-  <display-name>Servlets</display-name>
+  <display-name>JavaServlets</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -9,36 +9,34 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-  
   <servlet>
     <description></description>
     <display-name>JavaClass</display-name>
     <servlet-name>JavaClass</servlet-name>
-    <servlet-class>com.training.JavaClass</servlet-class>
+    <servlet-class>org.training.JavaClass</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>JavaClass</servlet-name>
     <url-pattern>/JavaClass</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
-    <display-name>PythonClass</display-name>
-    <servlet-name>PythonClass</servlet-name>
-    <servlet-class>com.training.PythonClass</servlet-class>
+    <display-name>PythonTraining</display-name>
+    <servlet-name>PythonTraining</servlet-name>
+    <servlet-class>org.training.PythonTraining</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>PythonClass</servlet-name>
-    <url-pattern>/PythonClass</url-pattern>
+    <servlet-name>PythonTraining</servlet-name>
+    <url-pattern>/PythonTraining</url-pattern>
   </servlet-mapping>
-  
-	<servlet>
-		<display-name>HtmlClass</display-name>
-		<servlet-name>HtmlClass</servlet-name>
-		<servlet-class>com.training.HtmlClass</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>HtmlClass</servlet-name>
-		<url-pattern>/test</url-pattern>
-	</servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HtmlClass</display-name>
+    <servlet-name>HtmlClass</servlet-name>
+    <servlet-class>org.training.HtmlClass</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HtmlClass</servlet-name>
+    <url-pattern>/HtmlClass</url-pattern>
+  </servlet-mapping>
 </web-app>
