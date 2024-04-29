@@ -21,4 +21,12 @@ public class CommonUtils {
 		JSONObject json = new JSONObject(inputData);
 		return json;
 	}
+	
+	public void registerDriver() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch(Exception e) {
+			System.out.print("Failed to register driver");
+		}
+	}
 }

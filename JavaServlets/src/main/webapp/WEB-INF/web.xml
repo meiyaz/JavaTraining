@@ -39,4 +39,14 @@
     <servlet-name>HtmlClass</servlet-name>
     <url-pattern>/HtmlClass</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Students</display-name>
+    <servlet-name>Students</servlet-name>
+    <servlet-class>org.training.Students</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Students</servlet-name>
+    <url-pattern>/Students</url-pattern>
+  </servlet-mapping>
 </web-app>
