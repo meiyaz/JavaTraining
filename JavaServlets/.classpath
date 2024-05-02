@@ -19,5 +19,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/vijay/Downloads/mysql-connector-j-8.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vijay/Downloads/jjwt-api-0.12.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
