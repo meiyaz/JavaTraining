@@ -14,13 +14,21 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.crypto.spec.SecretKeySpec;
+
 import java.security.Key;
 
 import org.json.JSONObject;
 import org.utils.CommonUtils;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwe;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 public class Login extends HttpServlet {
@@ -54,8 +62,9 @@ public class Login extends HttpServlet {
 				// static or random token
 //				responseObj.put("token", "123");
 				
-				// jwt authentication		
-				responseObj.put("token", generateToken(username));			
+				// jwt authentication
+//				String email = rs.getString("email");
+				responseObj.put("token", generateToken(username, "dummy@gmail.com"));			
 			} else
 				responseObj.put("login", "failed");
 			responseObj.put("status", "success");
@@ -81,7 +90,7 @@ public class Login extends HttpServlet {
 	}
 	
 	
-	private String generateToken(String loginUser) throws Exception {
+	private String generateToken(String loginUser, String email) throws Exception {
 		String sessionId = UUID.randomUUID().toString();
 		Date currentDate = new Date();
 		Date expiryDate = new Date(System.currentTimeMillis()+(5*60*1000));
@@ -90,13 +99,21 @@ public class Login extends HttpServlet {
 				.id(sessionId)
 				.subject(loginUser)
 				.claim("name", loginUser)
-				.claim("email", "dummymail@gmail.com")
+				.claim("email", email)
 				.issuedAt(currentDate)
 				.expiration(expiryDate)
-				.signWith(key);
-				//.signWith(key, SignatureAlgorithm.HS256); // define algorithm manually
+//				.signWith(key);
+				.signWith(key, SignatureAlgorithm.HS512); // define algorithm manually
 		String token = builder.compact();
 		return token;
+	}
+	
+	public boolean isValidUser(String token) {
+//		Key key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(SECRET_KEY));
+		SecretKeySpec key1 = new SecretKeySpec(Base64.getDecoder().decode(SECRET_KEY), SignatureAlgorithm.HS512.getJcaName());
+		JwtParser claims = Jwts.parser().verifyWith(key1).build();
+		System.out.print(claims.parse(token).getPayload());
+		return false;
 	}
 	
 }
