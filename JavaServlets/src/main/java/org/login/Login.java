@@ -22,9 +22,6 @@ import org.json.JSONObject;
 import org.utils.CommonUtils;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwe;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
@@ -108,12 +105,26 @@ public class Login extends HttpServlet {
 		return token;
 	}
 	
-	public boolean isValidUser(String token) {
-//		Key key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(SECRET_KEY));
+	private Claims getClaimInfo(String token) {
 		SecretKeySpec key1 = new SecretKeySpec(Base64.getDecoder().decode(SECRET_KEY), SignatureAlgorithm.HS512.getJcaName());
-		JwtParser claims = Jwts.parser().verifyWith(key1).build();
-		System.out.print(claims.parse(token).getPayload());
-		return false;
+		JwtParser parser = Jwts.parser().verifyWith(key1).build();
+		Claims claim = parser.parseSignedClaims(token).getBody();
+		return claim;
+	}
+	
+	public boolean isValidUser(String token) {
+		Claims claim = getClaimInfo(token);
+//		if(claim.getExpiration()) {
+//			
+//		}
+		return true;
+	}
+	
+	public String getLoggedInUser(String token) {
+		Claims claim = getClaimInfo(token);
+		String username = claim.get("name").toString();
+//		System.out.print("1"+ username);
+		return username;
 	}
 	
 }

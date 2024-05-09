@@ -76,6 +76,6 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>Demo</servlet-name>
-  	<url-pattern>/Demo</url-pattern>
+  	<url-pattern>/getUserDetails</url-pattern>
   </servlet-mapping>
 </web-app>
