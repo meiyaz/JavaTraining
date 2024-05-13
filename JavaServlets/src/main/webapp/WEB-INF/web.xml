@@ -69,13 +69,22 @@
     <servlet-name>Test</servlet-name>
     <url-pattern>/Test</url-pattern>
   </servlet-mapping>
-  
   <servlet>
-  	<servlet-name>Demo</servlet-name>
-  	<servlet-class>org.login.Demo</servlet-class>
+    <servlet-name>Demo</servlet-name>
+    <servlet-class>org.login.Demo</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>Demo</servlet-name>
-  	<url-pattern>/getUserDetails</url-pattern>
+    <servlet-name>Demo</servlet-name>
+    <url-pattern>/getUserDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Testing</display-name>
+    <servlet-name>Testing</servlet-name>
+    <servlet-class>org.training.Testing</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Testing</servlet-name>
+    <url-pattern>/Testing</url-pattern>
   </servlet-mapping>
 </web-app>
