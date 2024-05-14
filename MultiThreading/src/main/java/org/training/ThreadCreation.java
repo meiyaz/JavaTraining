@@ -21,5 +21,10 @@ public class ThreadCreation {
 
         Thread t = new Thread(new ThreadTwo());
         t.start();
+
+        Thread l = new Thread(() -> {
+            System.out.println("hello");
+        });
+        l.start();
     }
 }
