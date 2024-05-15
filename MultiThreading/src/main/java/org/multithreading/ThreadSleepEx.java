@@ -1,4 +1,4 @@
-package org.training;
+package org.multithreading;
 
 class SleepingThreadOne implements Runnable {
     public void run() {

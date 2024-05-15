@@ -1,4 +1,4 @@
-package org.training;
+package org.multithreading;
 
 class DaemonThread extends Thread {
     // background tasks

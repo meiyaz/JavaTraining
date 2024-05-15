@@ -1,4 +1,4 @@
-package org.training;
+package org.multithreading;
 
 public class ThreadCommunicationEx {
     private final Object lock = new Object();

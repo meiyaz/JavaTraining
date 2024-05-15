@@ -1,4 +1,4 @@
-package org.training;
+package org.multithreading;
 
 public class ThreadYieldEx {
     public static void main(String[] args) {

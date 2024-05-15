@@ -1,4 +1,4 @@
-package org.training;
+package org.multithreading;
 
 class StateThread extends Thread {
     public void run() {
