@@ -14,12 +14,12 @@ public class CalculatorTest {
 
     @BeforeClass
     public static void init() {
-        sc = new Scanner(System.in);
+//        sc = new Scanner(System.in);
     }
 
     @AfterClass
     public static void close() {
-        sc.close();
+//        sc.close();
     }
 
     @Before
