@@ -24,15 +24,16 @@ import com.training.SpringRestMaven.service.MentorServices;
 public class MentorController {
 	private MentorServices mentorServices;
 
-//	@Autowired
-//	public MentorController(MentorServices mentorServices) {
-//		this.mentorServices = mentorServices;
-//	}
+	@Autowired
+	public MentorController(MentorServices mentorServices) {
+		this.mentorServices = mentorServices;
+	}
 
 	@GetMapping("/getAll")
 	public Map<String, Object> getAllMentors() {
 		List<Mentor> mentorsList = new ArrayList<>();
 		// call service layer to get data
+		mentorsList = mentorServices.getAllMentors();
 
 		Map<String, Object> result = new HashMap<>();
 		result.put("mentors", mentorsList);
@@ -46,6 +47,7 @@ public class MentorController {
 	public ResponseEntity<Mentor> getMentorInfo(@PathVariable Long id) {
 		Optional<Mentor> mentorInfo = Optional.empty();
 		// need to call service
+		mentorInfo = mentorServices.getMentorById(id);
 
 		return mentorInfo.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 	}
@@ -54,6 +56,7 @@ public class MentorController {
 	public ResponseEntity<Mentor> createMentor(@RequestBody Mentor inputPayload) {
 		Mentor mentor = new Mentor();
 		// call service to store mentor info
+		mentor = mentorServices.saveMentor(inputPayload);
 
 		return ResponseEntity.ok(mentor);
 	}
@@ -62,6 +65,7 @@ public class MentorController {
 	public ResponseEntity<Mentor> updateMentor(@PathVariable Long id, @RequestBody Mentor inputPayload) {
 		Mentor mentor = new Mentor();
 		// call service to update mentor info
+		mentor = mentorServices.updateMentor(id, inputPayload);
 
 		return ResponseEntity.ok(mentor);
 	}
@@ -69,6 +73,7 @@ public class MentorController {
 	@PutMapping("/delete/{id}")
 	public ResponseEntity<String> deleteMentor(@PathVariable Long id) {
 		// call service to delete mentor
+		mentorServices.deleteMentorById(id);
 
 		return ResponseEntity.ok("Mentor deleted successfully");
 	}

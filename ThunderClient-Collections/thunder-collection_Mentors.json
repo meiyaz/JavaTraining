@@ -1,0 +1,81 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "Mentors",
+    "collectionId": "58cd4554-3ab8-4506-b13d-b4717acab663",
+    "dateExported": "2024-06-04T04:13:37.537Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "8e04205b-6b41-44cd-9720-38e1e5e49151",
+            "colId": "58cd4554-3ab8-4506-b13d-b4717acab663",
+            "containerId": "",
+            "name": "https://www.thunderclient.com/welcomehttp://localhost:8080/mentors/create",
+            "url": "http://localhost:8080/mentors/getAll",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-06-04T04:10:10.673Z",
+            "modified": "2024-06-04T04:10:10.673Z",
+            "headers": []
+        },
+        {
+            "_id": "e34d9b73-f465-4a99-86f6-dfda37d1d79a",
+            "colId": "58cd4554-3ab8-4506-b13d-b4717acab663",
+            "containerId": "",
+            "name": "https://www.thunderclient.com/welcomehttp://localhost:8080/mentors/create Copy",
+            "url": "http://localhost:8080/mentors/getById/1002",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-06-04T04:10:18.198Z",
+            "modified": "2024-06-04T04:12:51.939Z",
+            "headers": []
+        },
+        {
+            "_id": "c9142f32-b261-4076-9620-a3b18ee260ba",
+            "colId": "58cd4554-3ab8-4506-b13d-b4717acab663",
+            "containerId": "",
+            "name": "localhost:8080/api/Courses/getAll",
+            "url": "http://localhost:8080/mentors/delete/1003",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2024-06-04T04:10:23.128Z",
+            "modified": "2024-06-04T04:13:18.078Z",
+            "headers": []
+        },
+        {
+            "_id": "5fdb768c-0f1f-4cb8-9bd8-a35a66e573bb",
+            "colId": "58cd4554-3ab8-4506-b13d-b4717acab663",
+            "containerId": "",
+            "name": "localhost:8080/api/Courses/getAll Copy",
+            "url": "http://localhost:8080/mentors/create",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-06-04T04:10:32.436Z",
+            "modified": "2024-06-04T04:10:32.436Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"mei\",\n  \"contact\": \"9876543210\",\n  \"email\": \"mei@gamil.com\",\n  \"activeClasses\": 1\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "a420a804-3fcb-415b-abfc-1db4b6f80b04",
+            "colId": "58cd4554-3ab8-4506-b13d-b4717acab663",
+            "containerId": "",
+            "name": "localhost:8080/api/Courses/getAll Copy Copy",
+            "url": "http://localhost:8080/mentors/update/1002",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-06-04T04:10:39.833Z",
+            "modified": "2024-06-04T04:10:39.833Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"activeClasses\": 10\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "Ff-ETDrqUfloJwXtg4Pb9PuDfflSpHxN25mYId7t-lkEkUrgQO1A9I4VZZGs6nuYTGGAsSk1J7ph7N0_MxlqQg"
+}
